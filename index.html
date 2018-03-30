@@ -1,0 +1,66 @@
+<html lang="en">
+	<head>
+		<meta name="google-signin-scope" content="profile email">
+    		<meta name="google-signin-client_id" content="1081939971795-avoptvit8s05tui7hag87228ir00b28t.apps.googleusercontent.com">
+    		<script src="https://apis.google.com/js/platform.js" async defer></script>
+	
+		<title>
+			FreeGuard SS
+		</title>
+	</head>
+
+	<body background="background.jpg">
+
+		<h1 align="center">
+			<strong>FreeGuard</strong> Social Security
+		</h1>
+	
+		<p align="center">
+			<img alt="Social Security" width="256" height="256" src="logo.svg">
+		</p>
+
+		</br>
+	
+		<p align="center">
+			Hello, our names are Kyle Clabough, Kennan Starstrom, Lucus Dernetz
+			and Matt Stillwell. We work to Towson University and this is our 412 final project.
+		</p>
+
+
+<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+
+    </script>
+
+<a href="#" onclick="signOut();">Sign out</a>
+
+	
+		<p align="center">
+			<a href="http://www.towson.edu">
+				<img border="0" src="tulogo.gif" width="140" height="89">
+			</a>
+		</p>
+
+	</body>
+</html>
