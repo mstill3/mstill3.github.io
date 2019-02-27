@@ -1,93 +1,30 @@
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta name="google-signin-scope" content="profile email">
-    		<meta name="google-signin-client_id" content="1081939971795-avoptvit8s05tui7hag87228ir00b28t.apps.googleusercontent.com">
-    		<script src="https://apis.google.com/js/platform.js" async defer></script>
+    <head>
+        <meta charset="utf-8" />
+        <title> Food Finder </title>       
+        
+        <link rel="icon" href="images/favicon.png" type="image/png"/>
 
-		<title>
-			FreeGuard SS
-		</title>
-	</head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/artzfartz.css">                
+    </head>
+    <body>
+        <div class="container fill">
+            <h1>
+                Food Finder MD
+            </h1>
 
-	<body background="background.jpg">
+            <div id="map"> </div>
 
-	
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '2126923147323004',
-      cookie     : true,
-      xfbml      : true,
-      version    : '2.12'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
+            <script type="text/javascript" src="js/maps.js"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQUvuEdmTO1JRZWHILlN2hbWuCJ8PyrN8&callback=initMap"> </script>
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-	
-		<h1 align="center">
-			<strong>FreeGuard</strong> Social Security
-		</h1>
-	
-		<p align="center">
-			<img alt="Social Security" width="256" height="256" src="logo.svg">
-		</p>
+            <!-- Backstretch - Background image-->
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
+            <script type="text/javascript" src="js/backstretch.js"></script>
 
-		</br>
-	
-		<p align="center">
-			Hello, our names are Kyle Clabough, Kennan Starstrom, Lucus Dernetz
-			and Matt Stillwell. We work to Towson University and this is our 412 final project.
-		</p>
-
-
-<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <script>
-      function onSignIn(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-      };
-
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-
-    </script>
-
-<a href="#" onclick="signOut();">Sign out</a>
-
-<fb:login-button 
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>
-	
-		<p align="center">
-			<a href="http://www.towson.edu">
-				<img border="0" src="tulogo.gif" width="140" height="89">
-			</a>
-		</p>
-
-	</body>
+        </div>
+    </body>
 </html>
