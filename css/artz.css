@@ -4,18 +4,24 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-resume/blob/master/LICENSE)
  */
 
-body {
-  font-family: 'Muli', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  padding-top: 54px;
-  color: #868e96;
+body 
+{
+    --lightgray: #868e96;
+    --darkgray: #495057;
 
-  --blue: rgba(28, 68, 177, 0.705);
-  --darkblue: rgba(15, 37, 97, 0.705);
+    --lightblue: rgba(133, 159, 228, 0.705);
+    --blue: rgba(28, 68, 177, 0.705);
+    --darkblue: rgba(15, 37, 97, 0.705);
 
+    font-family: 'Muli', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    padding-top: 54px;
+    color: var(--lightgray);
 }
 
-@media (min-width: 992px) {
-  body {
+@media (min-width: 992px) 
+{
+  body 
+  {
     padding-top: 0;
     padding-left: 17rem;
   }
@@ -26,43 +32,50 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6 
+{
   font-family: 'Saira Extra Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   font-weight: 700;
   text-transform: uppercase;
   color: #343a40;
 }
 
-h1 {
+h1 
+{
   font-size: 6rem;
   line-height: 5.5rem;
 }
 
-h2 {
+h2 
+{
   font-size: 3.5rem;
 }
 
-h3 {
+h3 
+{
   font-size: 2rem;
 }
 
-p.lead {
+p.lead 
+{
   font-size: 1.15rem;
   font-weight: 400;
 }
 
-.subheading {
+.subheading 
+{
   text-transform: uppercase;
   font-weight: 500;
   font-family: 'Saira Extra Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   font-size: 1.5rem;
 }
 
-.social-icons a {
+.social-icons a 
+{
   display: inline-block;
   height: 3.5rem;
   width: 3.5rem;
-  background-color: #495057;
+  background-color: var(--darkgray);
   color: #fff !important;
   border-radius: 100%;
   text-align: center;
@@ -71,34 +84,43 @@ p.lead {
   margin-right: 1rem;
 }
 
-.social-icons a:last-child {
+.social-icons a:last-child 
+{
   margin-right: 0;
 }
 
-.social-icons a:hover {
+.social-icons a:hover 
+{
   background-color: var(--darkblue);
 }
 
-.dev-icons {
+.dev-icons 
+{
   font-size: 3rem;
 }
 
-.dev-icons .list-inline-item i:hover {
+.dev-icons .list-inline-item i:hover 
+{
   color: var(--darkblue);
 }
 
-#sideNav .navbar-nav .nav-item .nav-link {
+#sideNav .navbar-nav .nav-item .nav-link 
+{
   font-weight: 800;
   letter-spacing: 0.05rem;
   text-transform: uppercase;
 }
 
-#sideNav .navbar-toggler:focus {
+#sideNav .navbar-toggler:focus 
+{
   outline-color: var(--blue);
 }
 
-@media (min-width: 992px) {
-  #sideNav {
+@media (min-width: 992px) 
+{
+  
+  #sideNav 
+  {
     text-align: center;
     position: fixed;
     top: 0;
@@ -113,19 +135,25 @@ p.lead {
     width: 17rem;
     height: 100vh;
   }
-  #sideNav .navbar-brand {
+  
+  #sideNav .navbar-brand 
+  {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     margin: auto auto 0;
     padding: 0.5rem;
   }
-  #sideNav .navbar-brand .img-profile {
+  
+  #sideNav .navbar-brand .img-profile 
+  {
     max-width: 10rem;
     max-height: 10rem;
-    border: 0.5rem solid rgba(255, 255, 255, 0.2);
+    border: 0.5rem solid rgba(255, 255, 255, 0.411);
   }
-  #sideNav .navbar-collapse {
+  
+  #sideNav .navbar-collapse 
+  {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -138,48 +166,63 @@ p.lead {
     width: 100%;
     margin-bottom: auto;
   }
-  #sideNav .navbar-collapse .navbar-nav {
+  
+  #sideNav .navbar-collapse .navbar-nav 
+  {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
     width: 100%;
   }
-  #sideNav .navbar-collapse .navbar-nav .nav-item {
+  
+  #sideNav .navbar-collapse .navbar-nav .nav-item 
+  {
     display: block;
   }
-  #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link {
+  
+  #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link 
+  {
     display: block;
   }
 }
 
-section.resume-section {
+section.resume-section 
+{
   padding-top: 5rem !important;
   padding-bottom: 5rem !important;
   max-width: 75rem;
 }
 
-section.resume-section .resume-item .resume-date {
+section.resume-section .resume-item .resume-date 
+{
   min-width: none;
 }
 
-@media (min-width: 768px) {
-  section.resume-section {
+@media (min-width: 768px) 
+{
+  section.resume-section 
+  {
     min-height: 100vh;
   }
-  section.resume-section .resume-item .resume-date {
+  
+  section.resume-section .resume-item .resume-date 
+  {
     min-width: 18rem;
   }
 }
 
-@media (min-width: 992px) {
-  section.resume-section {
+@media (min-width: 992px) 
+{
+  section.resume-section 
+  {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
   }
 }
 
-.bg-primary {
+.bg-primary 
+{
   background-color: var(--blue) !important;
 }
 
