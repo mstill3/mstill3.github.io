@@ -10136,7 +10136,7 @@ h3 {
     font-size: 1.5rem;
   }
 }
-.portfolio .portfolio-item {
+.support .portfolio-item {
   cursor: pointer;
   position: relative;
   display: block;
@@ -10144,7 +10144,7 @@ h3 {
   border-radius: 0.5rem;
   overflow: hidden;
 }
-.portfolio .portfolio-item .portfolio-item-caption {
+.support .portfolio-item .portfolio-item-caption {
   position: absolute;
   top: 0;
   left: 0;
@@ -10152,10 +10152,10 @@ h3 {
   opacity: 0;
   background-color: rgba(26, 188, 156, 0.9);
 }
-.portfolio .portfolio-item .portfolio-item-caption:hover {
+.support .portfolio-item .portfolio-item-caption:hover {
   opacity: 1;
 }
-.portfolio .portfolio-item .portfolio-item-caption .portfolio-item-caption-content {
+.support .portfolio-item .portfolio-item-caption .portfolio-item-caption-content {
   font-size: 1.5rem;
 }
 
@@ -11875,4 +11875,12 @@ section {
   100% {
     transform: rotate(0deg);
   }
+}
+
+#conversations {
+  font-size: large;
+}
+
+#conversation {
+  padding: 10px;
 }
