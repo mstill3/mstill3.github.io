@@ -1,3 +1,2 @@
-# Online Resume
-
-A digital about me page that links to all pertinent files and accomplishments
+# My github io page
+[Github Page Markdown Theme](https://github.com/pages-themes/merlot)
