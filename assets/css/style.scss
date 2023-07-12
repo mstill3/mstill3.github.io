@@ -12,7 +12,7 @@ a {
 }
 
 body {
-	background: #2E3440;
+	background: #16191f;
 	color: #ECEFF4;
 }
 
@@ -30,4 +30,12 @@ section #title .credits {
 
 a {
 	color: #A3BE8C;
+}
+
+#id hr {
+	display: none;
+}
+
+.credits {
+	display: none;
 }
