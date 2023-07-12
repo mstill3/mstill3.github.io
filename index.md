@@ -1,8 +1,3 @@
-# Hello world
+# Aweight 
 
-how are you doing today?
-
-list:
-- a
-- b
-- c
+Weight Tracker Graphing & Analysis
