@@ -9,7 +9,7 @@ body {
 
   --nord_snow-storm-dark: #D8DEE9;
   --nord_snow-storm: #D8DEE9;
-  --nord_snow-storm-light: #ECEFF4;
+  D8DEE9: #ECEFF4;
 
   --nord_frost_green: #8FBCBB;
   --nord_frost_light: #88C0D0;
@@ -125,44 +125,44 @@ h1 {
 
 svg {
   display: block;
-  font-size: 5em;
+  font-size: 4em;
   /*font: 10.5em 'Montserrat';*/
-  width: 480px;
-  height: 150px;
+  width: 450px;
+  height: 75px;
   margin: 0 auto;
 }
 
 .text-copy {
   fill: none;
   stroke: white;
-  stroke-dasharray: 6% 29%;
-  stroke-width: 5px;
+  stroke-dasharray: 15% 17.4%;
+  stroke-width: 3px;
   stroke-dashoffset: 0%;
-  animation: stroke-offset 5.5s infinite linear;
+  animation: stroke-offset 5s infinite linear;
 }
 
 .text-copy:nth-child(1){
-  stroke: #4D163D;
+  stroke: var(--nord_snow-storm-dark);
   animation-delay: -1;
 }
 
 .text-copy:nth-child(2){
-  stroke: #840037;
+  stroke: var(--nord_frost_green);
   animation-delay: -2s;
 }
 
 .text-copy:nth-child(3){
-  stroke: #BD0034;
+  stroke: var(--nord_frost_light);
   animation-delay: -3s;
 }
 
 .text-copy:nth-child(4){
-  stroke: #BD0034;
+  stroke: var(--nord_frost_medium);
   animation-delay: -4s;
 }
 
 .text-copy:nth-child(5){
-  stroke: #FDB731;
+  stroke: var(--nord_frost_dark);
   animation-delay: -5s;
 }
 
