@@ -9,7 +9,7 @@ body {
 
   --nord_snow-storm-dark: #D8DEE9;
   --nord_snow-storm: #D8DEE9;
-  D8DEE9: #ECEFF4;
+  --nord_snow-storm-light: #ECEFF4;
 
   --nord_frost_green: #8FBCBB;
   --nord_frost_light: #88C0D0;
@@ -24,7 +24,7 @@ body {
 
   /* Variables */
   --background-color: var(--nord_polar-night_darkest);
-  --text-color: var(--nord_frost_medium);
+  --text-color: var(--nord_snow-storm-dark);
   --title-color: var(--nord_snow-storm-light);
   --icon-color: var(--nord_snow-storm-dark);
   --icon-bubble-color: var(--nord_polar-night_light);
@@ -123,6 +123,9 @@ h1 {
 /*  align-items: center;*/
 /*}*/
 
+/* Text Ants /*
+
+ */
 svg {
   display: block;
   font-size: 4em;
@@ -168,4 +171,85 @@ svg {
 
 @keyframes stroke-offset{
   100% {stroke-dashoffset: -35%;}
+}
+
+
+/* Text Typing */
+
+.word {
+  margin: auto;
+  color: var(--text-color);
+  /*font: 700 normal 2.5em 'tahoma';*/
+  /*text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;*/
+}
+
+
+/* Rotate */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
+
+.text {
+  position: absolute;
+  width: 450px;
+  left: 50%;
+  margin-left: -225px;
+  height: 40px;
+  top: 50%;
+  margin-top: -20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+p {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+}
+
+.word {
+  position: absolute;
+  width: 220px;
+  opacity: 0;
+}
+
+.letter {
+  display: inline-block;
+  position: relative;
+  float: left;
+  transform: translateZ(25px);
+  transform-origin: 50% 50% 25px;
+}
+
+.letter.out {
+  transform: rotateX(90deg);
+  transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.letter.behind {
+  transform: rotateX(-90deg);
+}
+
+.letter.in {
+  transform: rotateX(0deg);
+  transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.color1 {
+  color: var(--nord_aurora_red);
+}
+
+.color2 {
+  color: var(--nord_aurora_orange);
+}
+
+.color3 {
+  color: var(--nord_aurora_yellow);
+}
+
+.color4 {
+  color: var(--nord_aurora_green);
+}
+
+.color5 {
+  color: var(--nord_aurora_purple);
 }
