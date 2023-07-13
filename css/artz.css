@@ -24,8 +24,8 @@ body {
 
   /* Variables */
   --background-color: var(--nord_polar-night_darkest);
+  --title-color: var(--nord_frost_light);
   --text-color: var(--nord_snow-storm-dark);
-  --title-color: var(--nord_snow-storm-light);
   --icon-color: var(--nord_snow-storm-dark);
   --icon-bubble-color: var(--nord_polar-night_light);
   --icon-bubble-color_hover: var(--nord_polar-night_lightest);
@@ -185,17 +185,17 @@ svg {
 
 
 /* Rotate */
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
 
 .text {
-  position: absolute;
-  width: 450px;
-  left: 50%;
-  margin-left: -225px;
-  height: 40px;
-  top: 50%;
-  margin-top: -20px;
-  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  margin-left: -98px;
+  /*position: absolute;*/
+  /*width: 450px;*/
+  /*left: 40%;*/
+  /*margin-left: -225px;*/
+  /*height: 40px;*/
+  /*top: 50%;*/
+  /*margin-top: -20px;*/
   font-weight: 600;
   font-size: 20px;
 }
@@ -203,12 +203,11 @@ svg {
 p {
   display: inline-block;
   vertical-align: top;
-  margin: 0;
 }
 
 .word {
   position: absolute;
-  width: 220px;
+  width: 200px;
   opacity: 0;
 }
 
