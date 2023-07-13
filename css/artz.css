@@ -176,19 +176,19 @@ svg {
 
 /* Text Typing */
 
-.word {
-  margin: auto;
-  color: var(--text-color);
-  /*font: 700 normal 2.5em 'tahoma';*/
-  /*text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;*/
-}
+/*.word {*/
+/*  !*margin: auto;*!*/
+/*  color: var(--text-color);*/
+/*  !*font: 700 normal 2.5em 'tahoma';*!*/
+/*  !*text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;*!*/
+/*}*/
 
 
 /* Rotate */
 
 .text {
   text-align: center;
-  margin-left: -98px;
+  /*margin-left: -98px;*/
   /*position: absolute;*/
   /*width: 450px;*/
   /*left: 40%;*/
@@ -206,9 +206,7 @@ p {
 }
 
 .word {
-  position: absolute;
   width: 200px;
-  opacity: 0;
 }
 
 .letter {
