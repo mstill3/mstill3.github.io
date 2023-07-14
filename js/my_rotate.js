@@ -1,16 +1,13 @@
-const wordSpans = document.getElementsByClassName('word');
+const rotateWordSpan = document.getElementById('rotate-word');
+const words = ['iOS App', 'Website', 'Game', 'Back-end', 'Software'];
 let currentWordIndex = 0;
+const colors = ['#BF616A', '#D08770', '#EBCB8B', '#A3BE8C', '#B48EAD']
 
 function changeWord() {
-    for (let i = 0; i < wordSpans.length; i++) {
-        wordSpans[i].style.display = "none";
-    }
-    let currentWordSpan = wordSpans[currentWordIndex];
-    // console.log(currentWordSpan);
-    currentWordSpan.style.display = "inline";
-    currentWordIndex = currentWordIndex < wordSpans.length - 1 ? currentWordIndex + 1 : 0;
+    rotateWordSpan.innerText = words[currentWordIndex];
+    rotateWordSpan.style.color = colors[currentWordIndex];
+    currentWordIndex = currentWordIndex < words.length - 1 ? currentWordIndex + 1 : 0;
 }
 
 changeWord();
 setInterval(changeWord, 2000);
-
