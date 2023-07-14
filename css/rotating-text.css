@@ -1,0 +1,10 @@
+.text {
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+p {
+  display: inline-block;
+  vertical-align: top;
+}

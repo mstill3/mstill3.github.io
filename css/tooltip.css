@@ -1,0 +1,7 @@
+.arrow::before {
+  display: none;
+}
+
+.tooltip-inner {
+  background: none;
+}
