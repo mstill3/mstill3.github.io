@@ -41,23 +41,29 @@ section {
   padding-top: 18%;
 }
 
-.img-profile {
-  width: 50px;
-  height: 50px;
-}
-
 h1 {
   text-align: center;
   color: var(--title-color);
+  font-weight: 500;
+  font-size: 2.6em;
 }
 
-.subheading {
+
+/* Rotating Subtitle */
+
+.text {
   text-align: center;
+  font-weight: 500;
+  font-size: 20px;
 }
 
-.lead {
-  text-align: center;
+p {
+  display: inline-block;
+  vertical-align: top;
 }
+
+
+/* Icons */
 
 .social-icons {
   text-align: center;
@@ -92,53 +98,13 @@ h1 {
   background-color: var(--icon-bubble-color_hover);
 }
 
+
+/* Tooltips */
+
 .arrow::before {
   display: none;
 }
 
 .tooltip-inner {
   background: none;
-}
-
-
-/* Rotate */
-
-.text {
-  text-align: center;
-  font-weight: 600;
-  font-size: 20px;
-}
-
-p {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.word {
-  width: 200px;
-}
-
-.letter {
-  display: inline-block;
-  position: relative;
-  float: left;
-  transform: translateZ(25px);
-  transform-origin: 50% 50% 25px;
-}
-
-.letter.out {
-  transform: rotateX(90deg);
-  transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-}
-
-.letter.behind {
-  transform: rotateX(-90deg);
-}
-
-.letter.in {
-  transform: rotateX(0deg);
-  transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-#rotate-word {
 }

@@ -4,38 +4,36 @@ const words = ['iOS-App', 'Website', 'Game', 'Back-end', 'Software'];
 const colors = ['#BF616A', '#D08770', '#EBCB8B', '#A3BE8C', '#B48EAD']
 let currentWordIndex = 0;
 
+// Higher numbers are slower
+const type_letter_speed =  200;
+const delete_letter_speed =  100;
+const show_word_time =  600;
+const show_no_word_time =  100;
+
 
 // Changes the currently shown word
 const changeWord = async() => {
     let currentWord = words[currentWordIndex];
-    let currentColor = colors[currentWordIndex];
 
-    rotateWordSpan.style.color = currentColor;
+    rotateWordSpan.style.color = colors[currentWordIndex];
     rotateWordSpan.innerText = "";
 
     // type in word, one letter at a time
-    for(var i = 0; i < currentWord.length; i++) {
-        let currentLetter = currentWord[i];
-        rotateWordSpan.innerText += currentLetter;
-        // time to wait after adding a letter
-        await sleep(200);
+    for(const letter of currentWord) {
+        rotateWordSpan.innerText += letter;
+        await sleep(type_letter_speed);
     }
 
-    // show full word time
-    await sleep(500);
+    await sleep(show_word_time);
 
     // remove letters from word
-    for(var i = 0; i < currentWord.length; i++) {
-        let currentWord = rotateWordSpan.innerText;
-        let trimWord = currentWord.substring(0, currentWord.length - 1);
-        console.log(currentWord, trimWord)
-        rotateWordSpan.innerText = trimWord;
-        // time to wait after removing a letter
-        await sleep(200);
+    for(const letter of currentWord) {
+        let typedWord = rotateWordSpan.innerText;
+        rotateWordSpan.innerText = typedWord.substring(0, typedWord.length - 1);
+        await sleep(delete_letter_speed);
     }
 
-    // time to show no word
-    await sleep(200);
+    await sleep(show_no_word_time);
 
     // move index to next word
     currentWordIndex = currentWordIndex < words.length - 1 ? currentWordIndex + 1 : 0;
