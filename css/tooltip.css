@@ -5,3 +5,7 @@
 .tooltip-inner {
   background: none;
 }
+
+.tooltip {
+  font-family: 'JetBrains Mono', monospace;
+}
