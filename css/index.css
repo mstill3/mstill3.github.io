@@ -48,8 +48,6 @@ h1 {
   font-size: 2.2em;
 }
 
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.center {
+  text-align: center;
 }
