@@ -20,8 +20,14 @@ body {
     height: 100%;
 }
 
+#home-icon {
+    margin-left: 20px;
+    margin-top: 35px;
+    font-size: 20px;
+}
+
 h2 {
-    padding: 50px;
+    padding: 40px 0 20px 0;
     text-align: center;
 }
 
@@ -31,9 +37,9 @@ ul {
 
 li {
     /*padding: 25px;*/
-    margin: 10px;
+    margin: 30px 50px;
     background-color: var(--light);
-    /*border: 5px solid var(--sea) ;*/
+    /*border: 3px solid var(--darkest);*/
     list-style-type: none;
     cursor: pointer;
 }
