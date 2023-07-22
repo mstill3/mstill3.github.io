@@ -1,0 +1,62 @@
+html {
+    height: 100%;
+}
+
+body {
+    /* Variables */
+    --background-color: var(--darkest);
+    --title-color: var(--dark);
+    --text-color: var(--offwhite);
+
+    /* Settings */
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    height: 100%;
+}
+
+.container {
+    background-color: var(--dark);
+    height: 100%;
+}
+
+h2 {
+    padding: 50px;
+    text-align: center;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    /*padding: 25px;*/
+    margin: 10px;
+    background-color: var(--light);
+    /*border: 5px solid var(--sea) ;*/
+    list-style-type: none;
+    cursor: pointer;
+}
+
+li:hover {
+    background-color: var(--lighter);
+}
+
+a {
+    color: var(--offwhite);
+}
+
+a:hover {
+    color: var(--offwhite);
+    text-decoration: none;
+}
+
+.app-logo {
+    width: 75px;
+    height: 75px;
+}
+
+.app-name {
+    padding-left: 25px;
+    display: inline;
+}

@@ -1,27 +1,4 @@
 body {
-  /* Node Color Pallet */
-  /* https://www.nordtheme.com/docs/colors-and-palettes */
-
-  --nord_polar-night_darkest: #2E3440;
-  --nord_polar-night_dark: #3B4252;
-  --nord_polar-night_light: #434C5E;
-  --nord_polar-night_lightest: #4C566A;
-
-  --nord_snow-storm-dark: #D8DEE9;
-  --nord_snow-storm: #D8DEE9;
-  --nord_snow-storm-light: #ECEFF4;
-
-  --nord_frost_green: #8FBCBB;
-  --nord_frost_light: #88C0D0;
-  --nord_frost_medium: #81A1C1;
-  --nord_frost_dark: #5E81AC;
-
-  --nord_aurora_red: #BF616A;
-  --nord_aurora_orange: #D08770;
-  --nord_aurora_yellow: #EBCB8B;
-  --nord_aurora_green: #A3BE8C;
-  --nord_aurora_purple: #B48EAD;
-
   /* Variables */
   --background-color: var(--nord_polar-night_darkest);
   --title-color: var(--nord_frost_light);

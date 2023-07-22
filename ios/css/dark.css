@@ -1,0 +1,10 @@
+body {
+    /* Dark Color Pallet */
+    /* https://colorhunt.co/palette/222831393e4600adb5eeeeee */
+
+    --darkest: #222831;
+    --dark: #282d36;
+    --light: #323b49;
+    --lighter: #404b5d;
+    --offwhite: #EEEEEE;
+}
