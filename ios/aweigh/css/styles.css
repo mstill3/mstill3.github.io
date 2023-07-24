@@ -10765,7 +10765,7 @@ html {
 }
 
 .text-gradient {
-  background: -webkit-linear-gradient(#2937f0, #9f1ae2);
+  background: -webkit-linear-gradient(#606aef, #b861e3);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -11098,6 +11098,10 @@ section#features {
 #subtitle {
   color: var(--link-color) !important;
   padding-top: 10px;
+}
+
+.muted {
+  color: var(--link-color) !important;
 }
 
 body {
