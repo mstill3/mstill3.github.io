@@ -1,6 +1,10 @@
+
+.padded {
+  padding: 25px 0 5px 0;
+}
+
 .social-icons {
   text-align: center;
-  padding: 25px;
 }
 
 .social-icons a {
