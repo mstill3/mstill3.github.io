@@ -1,0 +1,12 @@
+:root {
+    --darkest-gray: #111015;
+    --dark-gray: #222129FF;
+    --dark-purple-gray: #2e2a59;
+    --nav-item-color: #a792f6;
+    --nav-item-hover-color: #bdadfd;
+    --nav-item-active-color: #ecadfd;
+    --link-color: #8d73e8;
+    --link-hover-color: #a792f6;
+    --header-color: #d1c5ff;
+    /*--primary-button-color: #;*/
+}

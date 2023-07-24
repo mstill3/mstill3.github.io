@@ -33,6 +33,10 @@ h2 {
     text-align: center;
 }
 
+#apps-list {
+    padding: 0 10%;
+}
+
 ul {
     padding: 0;
 }
@@ -76,8 +80,4 @@ a:hover {
     /*margin-top: 15px;*/
     display: inline-block;
     padding-right: 10px;
-}
-
-#apps-list {
-    padding: 0 13%;
 }
