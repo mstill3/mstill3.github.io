@@ -28,11 +28,3 @@ h1 {
 .center {
   text-align: center;
 }
-
-#piggy {
-  opacity: 0;
-}
-
-#piggy:hover {
-  opacity: 1;
-}
