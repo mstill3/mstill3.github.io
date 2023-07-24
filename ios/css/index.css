@@ -16,10 +16,10 @@ body {
 }
 
 .container {
-    background-color: var(--dark);
-    height: 100%;
-    max-height: 100vh;
-    overflow-y: scroll;
+    /*background-color: var(--dark);*/
+    /*height: 100%;*/
+    /*max-height: 100vh;*/
+    /*overflow-y: scroll;*/
 }
 
 #home-icon {
@@ -34,7 +34,7 @@ h2 {
 }
 
 #apps-list {
-    padding: 0 5%;
+    padding: 0;
 }
 
 ul {
@@ -80,4 +80,9 @@ a:hover {
     /*margin-top: 15px;*/
     display: inline-block;
     padding-right: 10px;
+}
+
+.box {
+    background-color: #2E3440;
+    border-radius: 25px;
 }

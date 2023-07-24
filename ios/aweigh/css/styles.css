@@ -11099,3 +11099,7 @@ section#features {
   color: var(--link-color) !important;
   padding-top: 10px;
 }
+
+body {
+  background-color: var(--dark-gray);
+}
