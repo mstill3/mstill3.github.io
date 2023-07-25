@@ -11107,3 +11107,7 @@ section#features {
 body {
   background-color: var(--darker-gray);
 }
+
+.rounded-corners {
+  border-radius: 15px !important;
+}
