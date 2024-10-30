@@ -1,3 +1,3 @@
-# My Homepage 
+# My Homepage
 
 Clean & simple homepage redirecting to my projects.
