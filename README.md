@@ -1,3 +1,3 @@
-# My Homepage
+# My Github Landing Page
 
-Clean & simple homepage redirecting to my projects.
+Clean & simple landing page linking to my projects.
