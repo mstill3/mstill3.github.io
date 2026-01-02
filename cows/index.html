@@ -9,8 +9,13 @@
 
         <meta name="description" content="cosay ascii collection" />
         <meta name="keywords" content="cowsay, ascii, art, cows, terminal, cli" />
-        
-        <link rel="stylesheet" href="assets/style.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
+
+        <link rel="stylesheet" href="assets/css/nord-color-theme.css" />
+        <link rel="stylesheet" href="assets/css/style.css" />
 
         <title> cow collection </title>
     </head>
@@ -18,19 +23,27 @@
         <h1> My cowsay ASCII art collection </h1>
         <p> Hello world </p>
 
-        <label>Message</label>
-        <input type="text"/>
+        <form>
+            <div class="line">
+                <label>Message</label>
+                <input type="text"/>
+            </div>
 
-        <label>Method</label>
-        <select>
-            <option>cowsay</option>
-            <option>cowthink</option>
-        </select>
+            <div class="line">
+                <label>Method</label>
+                <select>
+                    <option>cowsay</option>
+                    <option>cowthink</option>
+                </select>
+            </div>
 
-        <label>Cowfile</label>
-        <select>
-            <option>abc</option>
-        </select>
+            <div class="line">
+                <label>Cowfile</label>
+                <select>
+                    <option>abc</option>
+                </select>
+            </div>
+        </form>
 
         <div id="terminal">
             <div id="terminal-input">
@@ -41,6 +54,6 @@
             </div>
         </div>
 
-        <script src="assets/main.js"></script>
+        <script src="assets/js/main.js"></script>
     </body>
 </html>

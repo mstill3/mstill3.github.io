@@ -1,0 +1,42 @@
+:root {
+    /* Node Color Pallet */
+    /* https://www.nordtheme.com/docs/colors-and-palettes */
+
+    --nord_polar-night_darkest: #2E3440;
+    --nord_polar-night_dark: #3B4252;
+    --nord_polar-night_light: #434C5E;
+    --nord_polar-night_lightest: #4C566A;
+
+    --nord_snow-storm-dark: #D8DEE9;
+    --nord_snow-storm: #D8DEE9;
+    --nord_snow-storm-light: #ECEFF4;
+
+    --nord_frost_green: #8FBCBB;
+    --nord_frost_light: #88C0D0;
+    --nord_frost_medium: #81A1C1;
+    --nord_frost_dark: #5E81AC;
+
+    --nord_aurora_red: #BF616A;
+    --nord_aurora_orange: #D08770;
+    --nord_aurora_yellow: #EBCB8B;
+    --nord_aurora_green: #A3BE8C;
+    --nord_aurora_purple: #B48EAD;
+
+    /* Nord variable names */
+    --nord0: var(--nord_polar-night_darkest);
+    --nord1: var(--nord_polar-night_dark);
+    --nord2: var(--nord_polar-night_light);
+    --nord3: var(--nord_polar-night_lightest);
+    --nord4: var(--nord_snow-storm-dark);
+    --nord5: var(--nord_snow-storm);
+    --nord6: var(--nord_snow-storm-light);
+    --nord7: var(--nord_frost_green);
+    --nord8: var(--nord_frost_light);
+    --nord9: var(--nord_frost_medium);
+    --nord10: var(--nord_frost_dark);
+    --nord11: var(--nord_aurora_red);
+    --nord12: var(--nord_aurora_orange);
+    --nord13: var(--nord_aurora_yellow);
+    --nord14: var(--nord_aurora_green);
+    --nord15: var(--nord_aurora_purple);
+}

@@ -1,0 +1,26 @@
+body {
+  /* Variables */
+  --background-color: var(--nord_polar-night_darkest);
+  --title-color: var(--nord_frost_light);
+  --text-color: var(--nord_snow-storm-dark);
+  --icon-color: var(--nord_snow-storm-dark);
+  --icon-bubble-color: var(--nord_polar-night_light);
+  --icon-bubble-color_hover: var(--nord_polar-night_lightest);
+  --icon-bubble-border-color: var(--nord_polar-night_lightest);
+
+  /* Settings */
+  font-family: 'JetBrains Mono', monospace;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h1 {
+  text-align: center;
+  color: var(--title-color);
+  font-weight: 500;
+  font-size: 2.2em;
+}
+
+.line {
+  display: block;
+}
