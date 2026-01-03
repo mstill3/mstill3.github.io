@@ -14,6 +14,7 @@ const cowMessageInput = document.getElementById('cow-message');
 
 let selectedCow = '';
 let selectedCowFileContent = '';
+let selectedCowFormattedContent = '';
 /** @type {'cowsay' | 'cowthink'} */
 let selectedCowMethod = 'cowsay';
 let inputCowMessage = '';
@@ -97,9 +98,47 @@ async function getCowFileContents(cowFileName) {
   return cowGithubApiResp;
 }
 
+/**
+ * @param {string} selectedCowFileContent
+ * @returns {string}
+ */
+function formatCow(selectedCowFileContent) {
+    console.log({ selectedCowFileContent });
+    
+    // Split the content into lines using the correct newline character
+    let selectedCowFileContentLines = selectedCowFileContent.split('\n');
+
+    const messageBubble = 'asassa';
+    const thoughtChar = selectedCowMethod === 'cowsay' ? '\\' : 'o';
+    const eyeChar = 'o';
+    const eyesStr = 'oo';
+    const toungeChar = '';
+
+    // Remove trailing spaces, filter out empty lines and comments
+    let formattedCow = selectedCowFileContentLines
+        .map(line => line.replace(/\s+$/, '')) // Trim trailing whitespace
+        .map(line => line.replace('EOC', ''))
+        .map(line => line.replace('$the_cow = <<;', messageBubble)) // remove top
+        .map(line => line.replace('$the_cow = <<"";', messageBubble)) // remove top
+        .map(line => line.replace('$eye = chop($eyes);', ''))
+        .map(line => line.replaceAll('\\\\', '\\'))
+        .map(line => line.replace('$thoughts', thoughtChar))
+        .map(line => line.replace('${thoughts}', thoughtChar))
+        .map(line => line.replace('$eyes', eyesStr))
+        .map(line => line.replace('${eyes}', eyesStr))
+        .map(line => line.replaceAll('$eye', eyeChar))
+        .map(line => line.replaceAll('${eye}', eyeChar))
+        .map(line => line.replaceAll('$tounge', toungeChar))
+        .map(line => line.replaceAll('${tounge}', toungeChar))
+        .filter(line => line.length > 0 && !line.startsWith('#')); // Remove empty lines and comments
+
+    // Join the valid lines back together
+    return formattedCow.join('\n');
+}
+
 async function redrawCow() {
   terminalInputDivElement.innerText = `echo "${inputCowMessage}" | ${selectedCowMethod} -f ${selectedCow}`;
-  terminalOutputDivElement.innerText = selectedCowFileContent;
+  terminalOutputDivElement.innerText = selectedCowFormattedContent;
   attributionDivElement.innerHTML = 'aabbcc';
 }
 
@@ -111,6 +150,7 @@ async function handleCowSelectChange() {
   if (selectedInputCow) {
     selectedCow = selectedInputCow
     selectedCowFileContent = await getCowFileContents(selectedCow);
+    selectedCowFormattedContent = formatCow(selectedCowFileContent);
   }
   redrawCow();
 }
