@@ -1,64 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- <link rel="icon" href="assets/favicon.png" />
-        <link rel="apple-touch-icon" href="assets/favicon.png" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-        <meta name="description" content="cosay ascii collection" />
-        <meta name="keywords" content="cowsay, ascii, art, cows, terminal, cli" />
+    <meta name="description" content="cowsay ascii collection">
+    <meta name="keywords" content="cowsay, ascii, art, cows, terminal, cli">
 
-        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mshaugh/nerdfont-webfonts@v3.3.0/build/jetbrainsmono-nf.css"> -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
-
-        <link rel="stylesheet" href="assets/css/nord-color-theme.css" />
-        <link rel="stylesheet" href="assets/css/style.css" />
-
-        <title> cow collection </title>
-    </head>
-    <body>
-        <h1> My cowsay ASCII art collection </h1>
-        <p> Hello world </p>
+    <title> Cow Collection </title>
+    <style>
+        body {
+            background-color: #343a40; /* Dark background */
+            color: #ffffffe0; /* Light text color */
+            font-family: 'JetBrains Mono', monospace;
+        }
+        #terminal-input, #terminal-output {
+            border: 2px solid #bceca4; /* Use your desired color */
+            padding: 20px;
+            white-space: pre;
+            /* font-family: 'JetBrains Mono', monospace; */
+            margin-bottom: 10px;
+            background-color: #212529; /* Slightly lighter dark color for terminal boxes */
+        }
+        a {
+            color: #6ca0f4; /* Bootstrap link color */
+        }
+        a:hover {
+            color: #85aef1; /* Hover color for links */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">My Cowsay ASCII Art Collection</h1>
 
         <form>
-            <div class="line">
-                <label>Message</label>
-                <input type="text" id="cow-message"/>
+            <div class="form-group">
+                <label for="cow-message">Message</label>
+                <input type="text" class="form-control" id="cow-message">
             </div>
 
-            <div class="line">
-                <label>Method</label>
-                <select id="cow-method">
-                    <option>cowsay</option>
-                    <option>cowthink</option>
+            <div class="form-group">
+                <label for="cow-method">Method</label>
+                <select class="form-control" id="cow-method">
+                    <option value="cowsay">Cowsay</option>
+                    <option value="cowthink">Cowthink</option>
                 </select>
             </div>
 
-            <div class="line">
-                <label>Cowfile</label>
-                <select id="cow-input">
+            <div class="form-group">
+                <label for="cow-input">Cowfile</label>
+                <select class="form-control" id="cow-input">
+                    <!-- Options will be populated by JavaScript -->
                 </select>
             </div>
         </form>
 
         <div id="terminal">
-            <div class="bordered-box" id="terminal-input">
+            <label for="terminal-input">Input</label>
+            <div id="terminal-input"></div>
 
-            </div>
-            <div class="bordered-box" id="terminal-output">
+            <label for="terminal-output">Output</label>
+            <div id="terminal-output"></div>
 
-            </div>
-            <div id="attributions">
-                
-            </div>
+            <label for="attributions">Attributions</label>
+            <div id="attributions"></div>
         </div>
 
-        <a href="https://github.com/mstill3/cowsay-files">Source Code</a>
+        <div class="mt-4">
+            <a href="https://github.com/mstill3/cowsay-files">Source Code</a>
+        </div>
+    </div>
 
-        <script src="assets/js/main.js"></script>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
 </html>
