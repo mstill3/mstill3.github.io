@@ -3,6 +3,7 @@ body {
   --background-color: var(--nord_polar-night_darkest);
   --title-color: var(--nord_frost_light);
   --text-color: var(--nord_snow-storm-dark);
+  --link-color: var(--nord_frost_medium);
   --icon-color: var(--nord_snow-storm-dark);
   --icon-bubble-color: var(--nord_polar-night_light);
   --icon-bubble-color_hover: var(--nord_polar-night_lightest);
@@ -10,6 +11,7 @@ body {
 
   /* Settings */
   font-family: 'JetBrains Mono', monospace;
+  /* font-family: 'JetBrains Mono Nerd Font', monospace; */
   background-color: var(--background-color);
   color: var(--text-color);
 }
@@ -21,6 +23,28 @@ h1 {
   font-size: 2.2em;
 }
 
+a {
+  color: var(--link-color);
+}
+
 .line {
   display: block;
+}
+
+.bordered-box {
+  white-space: pre;
+  border: 2px solid var(--nord_aurora_purple);
+  background-color: var(--nord_polar-night_lightest);
+  padding: 5px;
+  margin: 5px;
+}
+
+#terminal-input {
+}
+
+#terminal-output {
+}
+
+#attribution {
+  color: var(--nord_polar-night_lightest);
 }
