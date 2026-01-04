@@ -2,10 +2,10 @@
 
 // Global variables
 
-/** @type {HTMLSelectElement} */
+/** @type {HTMLSelectElement | null} */
 // @ts-ignore
 const cowSelectBox = document.getElementById('cow-input');
-/** @type {HTMLInputElement} */
+/** @type {HTMLInputElement | null} */
 // @ts-ignore
 const cowMessageInput = document.getElementById('cow-message');
 
@@ -30,16 +30,16 @@ const attributionDivElement = document.getElementById('attributions');
  * @returns {Promise<{name: string}[]>} URL response
  */
 async function simplyFetch(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Network response was not ok.');
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+        return [];
     }
-    return await response.json();
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-    return [];
-  }
 }
 
 /**
@@ -50,27 +50,39 @@ async function simplyFetch(url) {
  * @returns {Promise<string>} Contents of the file
  */
 async function fetchFileFromGitHub(owner, repo, path) {
-  const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-  
-  try {
-    const response = await fetch(url);
-    
-    // Check if response is ok
-    if (!response.ok) {
-      throw new Error('Network response was not ok. Status: ' + response.status);
+    const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+    try {
+        const response = await fetch(url);
+
+        // Check if response is ok
+        if (!response.ok) {
+            throw new Error('Network response was not ok. Status: ' + response.status);
+        }
+
+        const data = await response.json();
+        // Decode content if it's base64 encoded
+        if (data?.content) {
+            const base64Content = data.content;
+            const binaryString = atob(base64Content);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+
+            // Convert binary string to byte array
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+
+            // Use TextDecoder to handle UTF-8
+            const decoder = new TextDecoder('utf-8');
+            return decoder.decode(bytes);
+        }
+
+        throw new Error('File content is not available');
+    } catch (error) {
+        console.error('Error fetching the file:', error);
+        return '';
     }
-    
-    const data = await response.json();
-    // Decode content if it's base64 encoded
-    if (data?.content) {
-      return atob(data.content); // Decode from base64
-    }
-    
-    throw new Error('File content is not available');
-  } catch (error) {
-    console.error('Error fetching the file:', error);
-    return '';
-  }
 }
 
 /** 
@@ -99,7 +111,7 @@ async function getCowFileContents(cowFileName) {
  */
 function formatCow(selectedCowFileContent) {
     console.log({ selectedCowFileContent });
-    
+
     // Split the content into lines using the correct newline character
     let selectedCowFileContentLines = selectedCowFileContent.split('\n');
 
@@ -132,9 +144,9 @@ function formatCow(selectedCowFileContent) {
 }
 
 async function redrawCow() {
-  terminalInputDivElement.innerText = `echo "${inputCowMessage}" | cowsay -f ${selectedCow}`;
-  terminalOutputDivElement.innerText = selectedCowFormattedContent;
-  attributionDivElement.innerHTML = 'aabbcc';
+    terminalInputDivElement.innerText = `echo "${inputCowMessage}" | cowsay -f ${selectedCow}`;
+    terminalOutputDivElement.innerText = selectedCowFormattedContent;
+    attributionDivElement.innerHTML = 'aabbcc';
 }
 
 /**
@@ -142,58 +154,57 @@ async function redrawCow() {
  * @param {string} cowName 
  */
 async function setCow(cowName) {
-  selectedCow = cowName
-  selectedCowFileContent = await getCowFileContents(selectedCow);
-  selectedCowFormattedContent = formatCow(selectedCowFileContent);
-  redrawCow();
+    selectedCow = cowName;
+    selectedCowFileContent = await getCowFileContents(selectedCow);
+    selectedCowFormattedContent = formatCow(selectedCowFileContent);
+    redrawCow();
 }
 
 /** 
  * Handles change event for cow select box
  */
 function handleCowSelectChange() {
-  const selectedInputCow = cowSelectBox.value;
-  if (!selectedInputCow) return;
-  setCow(selectedInputCow);
+    if (!cowSelectBox) return;
+    const selectedInputCow = cowSelectBox.value;
+    if (!selectedInputCow) return;
+    setCow(selectedInputCow);
 }
 
 /** 
  * Handles change event for cow message input
  */
 function handleCowMessageChange() {
-  if (!cowMessageInput) return;
-  inputCowMessage = cowMessageInput.value;
-  redrawCow();
+    if (!cowMessageInput) return;
+    inputCowMessage = cowMessageInput.value;
+    redrawCow();
 }
 
 /** 
  * Executes on page load
  */
-async function onPageLoad() {
-  // Get cow file names
-  const cowFileNames = await getCowFileNames();
+async function onPageLoad() { 
+    if (!cowSelectBox || !cowMessageInput) return;
 
-  // Set as options in the cowSelectBox
-  
-  if (!cowSelectBox || !cowMessageInput) return;
+    // Attach event listeners
+    cowSelectBox.addEventListener('change', handleCowSelectChange);
+    cowMessageInput.addEventListener('input', handleCowMessageChange);
 
-  // Clear any existing options
-  cowSelectBox.innerHTML = '';
+    // Get cow file names
+    const cowFileNames = await getCowFileNames();
 
-  // Add each cow file name as an option
-  cowFileNames.forEach(cowFileName => {
-    const option = document.createElement('option');
-    option.value = cowFileName; // Set the value to the cow name
-    option.textContent = cowFileName; // Set the displayed text to the cow name
-    cowSelectBox.appendChild(option);
-  });
-  if (cowFileNames.length > 0) {
-    setCow(cowFileNames[0]);
-  }
+    // Clear any existing options
+    cowSelectBox.innerHTML = '';
 
-  // Attach event listeners
-  cowSelectBox.addEventListener('change', handleCowSelectChange);
-  cowMessageInput.addEventListener('input', handleCowMessageChange);
+    // Add each cow file name as an option
+    cowFileNames.forEach(cowFileName => {
+        const option = document.createElement('option');
+        option.value = cowFileName; // Set the value to the cow name
+        option.textContent = cowFileName; // Set the displayed text to the cow name
+        cowSelectBox.appendChild(option);
+    });
+    if (cowFileNames.length > 0) {
+        setCow(cowFileNames[0]);
+    }
 }
 
 // Execute the function on page load

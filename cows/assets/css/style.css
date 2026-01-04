@@ -8,6 +8,7 @@ body {
     border-radius: 5px;
     padding: 20px;
     white-space: pre;
+    line-height: 1;
     overflow: auto;
     background-color: #212529;
 }
