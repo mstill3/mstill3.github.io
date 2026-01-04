@@ -106,6 +106,87 @@ async function getCowFileContents(cowFileName) {
 }
 
 /**
+ * @param {string} sentence
+ * @param {number} maxLineWidth
+ * @returns {string[]} lines
+ */
+function splitIntoLines(sentence, maxLineWidth) {
+    const words = sentence.split(' ');
+    const lines = [];
+    let currentLine = '';
+
+    for (const word of words) {
+        // Check if the current word exceeds the maximum width
+        if (word.length > maxLineWidth) {
+            // If there's already content in the current line, push it to lines
+            if (currentLine.length > 0) {
+                lines.push(currentLine.trim());
+                currentLine = ''; // Reset current line
+            }
+
+            // Split the long word into chunks of maxLineWidth
+            for (let i = 0; i < word.length; i += maxLineWidth) {
+                lines.push(word.slice(i, i + maxLineWidth)); // Add chunk to lines
+            }
+        } else {
+            // Check if adding this word exceeds the max line width
+            if (currentLine.length + word.length + 1 > maxLineWidth) {
+                if (currentLine.length > 0) {
+                    lines.push(currentLine.trim()); // Push current line if not empty
+                    currentLine = ''; // Reset current line
+                }
+            }
+
+            // Append the word to the current line with a space
+            currentLine += word + ' ';
+        }
+    }
+
+    // Add any remaining words in currentLine to lines
+    if (currentLine.length > 0) {
+        lines.push(currentLine.trim());
+    }
+
+    return lines; // Return the array of lines
+}
+
+/**
+ * 
+ * @param {string} message 
+ * @returns {string} string
+ */
+function generateCowMessageBanner(message) {
+    const MAX_COW_MESSAGE_LINE_WIDTH = 40;
+    const width = Math.min(message.length + 2, MAX_COW_MESSAGE_LINE_WIDTH);
+    const horizontalLine = '─'.repeat(width);
+
+    const messageLines = splitIntoLines(message, MAX_COW_MESSAGE_LINE_WIDTH);
+
+    if (messageLines.length == 1) return ` ${horizontalLine}\n< ${message} >\n ${horizontalLine}`;
+
+    /** @type {string[]} */
+    let messageBannerLines = [];
+    messageBannerLines.push(` ${horizontalLine}`);
+    for(let lineNum = 0; lineNum < messageLines.length; lineNum++) {
+        const messageChunk = messageLines[lineNum];
+
+        // Fill the message chunk with trailing spaces to meet the max width
+        const spaceFillAmount = width - messageChunk.length - 2;
+        const filledMessageChunk = messageChunk + ' '.repeat(Math.max(spaceFillAmount, 0));
+
+        if (lineNum === 0) {
+            messageBannerLines.push(`/ ${filledMessageChunk} \\`);
+        } else if (lineNum === messageLines.length - 1) {
+            messageBannerLines.push(`\\ ${filledMessageChunk} /`);
+        } else {
+            messageBannerLines.push(`| ${filledMessageChunk} |`);
+        }
+    }
+    messageBannerLines.push(` ${horizontalLine}`);
+    return messageBannerLines.join('\n');
+}
+
+/**
  * @param {string} selectedCowFileContent
  * @returns {string}
  */
@@ -113,7 +194,6 @@ function formatCow(selectedCowFileContent) {
     // Split the content into lines using the correct newline character
     let selectedCowFileContentLines = selectedCowFileContent.split('\n');
 
-    const messageBubble = 'asassa';
     const thoughtChar = '\\';
     const eyeChar = 'o';
     const eyesStr = 'oo';
@@ -123,8 +203,8 @@ function formatCow(selectedCowFileContent) {
     let formattedCow = selectedCowFileContentLines
         .map(line => line.replace(/\s+$/, '')) // Trim trailing whitespace
         .map(line => line.replace('EOC', ''))
-        .map(line => line.replace('$the_cow = <<;', messageBubble)) // remove top
-        .map(line => line.replace('$the_cow = <<"";', messageBubble)) // remove top
+        .map(line => line.replace('$the_cow = <<;', '')) // remove top
+        .map(line => line.replace('$the_cow = <<"";', '')) // remove top
         .map(line => line.replace('$eye = chop($eyes);', ''))
         .map(line => line.replaceAll('\\\\', '\\'))
         .map(line => line.replace('$thoughts', thoughtChar))
@@ -143,8 +223,8 @@ function formatCow(selectedCowFileContent) {
 
 async function redrawCow() {
     terminalInputDivElement.innerText = `echo "${inputCowMessage}" | cowsay -f ${selectedCow}`;
-    terminalOutputDivElement.innerText = selectedCowFormattedContent;
-    attributionDivElement.innerHTML = 'aabbcc';
+    const cowMessageBanner = generateCowMessageBanner(inputCowMessage);
+    terminalOutputDivElement.innerText = cowMessageBanner + '\n' + selectedCowFormattedContent;
 }
 
 /**
