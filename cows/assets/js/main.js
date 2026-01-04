@@ -279,6 +279,11 @@ function handleCowMessageChange() {
 async function onPageLoad() { 
     if (!cowSelectBox || !cowMessageInput) return;
 
+    // set default input message
+    const defaultMessage = 'hello world';
+    inputCowMessage = defaultMessage;
+    cowMessageInput.value = defaultMessage; 
+
     // Attach event listeners
     cowSelectBox.addEventListener('change', handleCowSelectChange);
     cowMessageInput.addEventListener('input', handleCowMessageChange);
