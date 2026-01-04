@@ -27,6 +27,7 @@ label {
 
 a {
     color: #7fabf1;
+    display: block;
 }
 
 a:hover {
