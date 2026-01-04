@@ -5,9 +5,6 @@
 /** @type {HTMLSelectElement} */
 // @ts-ignore
 const cowSelectBox = document.getElementById('cow-input');
-/** @type {HTMLSelectElement} */
-// @ts-ignore
-const cowMethodSelectBox = document.getElementById('cow-method');
 /** @type {HTMLInputElement} */
 // @ts-ignore
 const cowMessageInput = document.getElementById('cow-message');
@@ -15,8 +12,6 @@ const cowMessageInput = document.getElementById('cow-message');
 let selectedCow = '';
 let selectedCowFileContent = '';
 let selectedCowFormattedContent = '';
-/** @type {'cowsay' | 'cowthink'} */
-let selectedCowMethod = 'cowsay';
 let inputCowMessage = '';
 
 /** @type {HTMLElement} */
@@ -67,7 +62,7 @@ async function fetchFileFromGitHub(owner, repo, path) {
     
     const data = await response.json();
     // Decode content if it's base64 encoded
-    if (data && data.content) {
+    if (data?.content) {
       return atob(data.content); // Decode from base64
     }
     
@@ -109,7 +104,7 @@ function formatCow(selectedCowFileContent) {
     let selectedCowFileContentLines = selectedCowFileContent.split('\n');
 
     const messageBubble = 'asassa';
-    const thoughtChar = selectedCowMethod === 'cowsay' ? '\\' : 'o';
+    const thoughtChar = '\\';
     const eyeChar = 'o';
     const eyesStr = 'oo';
     const toungeChar = '';
@@ -137,34 +132,29 @@ function formatCow(selectedCowFileContent) {
 }
 
 async function redrawCow() {
-  terminalInputDivElement.innerText = `echo "${inputCowMessage}" | ${selectedCowMethod} -f ${selectedCow}`;
+  terminalInputDivElement.innerText = `echo "${inputCowMessage}" | cowsay -f ${selectedCow}`;
   terminalOutputDivElement.innerText = selectedCowFormattedContent;
   attributionDivElement.innerHTML = 'aabbcc';
+}
+
+/**
+ * 
+ * @param {string} cowName 
+ */
+async function setCow(cowName) {
+  selectedCow = cowName
+  selectedCowFileContent = await getCowFileContents(selectedCow);
+  selectedCowFormattedContent = formatCow(selectedCowFileContent);
+  redrawCow();
 }
 
 /** 
  * Handles change event for cow select box
  */
-async function handleCowSelectChange() {
+function handleCowSelectChange() {
   const selectedInputCow = cowSelectBox.value;
-  if (selectedInputCow) {
-    selectedCow = selectedInputCow
-    selectedCowFileContent = await getCowFileContents(selectedCow);
-    selectedCowFormattedContent = formatCow(selectedCowFileContent);
-  }
-  redrawCow();
-}
-
-/** 
- * Handles change event for cow method select box
- */
-function handleCowMethodChange() {
-  const selectedMethod = cowMethodSelectBox.value;
-  if (selectedMethod) {
-    // @ts-ignore
-    selectedCowMethod = selectedMethod;
-  }
-  redrawCow();
+  if (!selectedInputCow) return;
+  setCow(selectedInputCow);
 }
 
 /** 
@@ -185,7 +175,7 @@ async function onPageLoad() {
 
   // Set as options in the cowSelectBox
   
-  if (!cowSelectBox || !cowMethodSelectBox || !cowMessageInput) return;
+  if (!cowSelectBox || !cowMessageInput) return;
 
   // Clear any existing options
   cowSelectBox.innerHTML = '';
@@ -197,13 +187,14 @@ async function onPageLoad() {
     option.textContent = cowFileName; // Set the displayed text to the cow name
     cowSelectBox.appendChild(option);
   });
+  if (cowFileNames.length > 0) {
+    setCow(cowFileNames[0]);
+  }
 
   // Attach event listeners
   cowSelectBox.addEventListener('change', handleCowSelectChange);
-  cowMethodSelectBox.addEventListener('change', handleCowMethodChange);
   cowMessageInput.addEventListener('input', handleCowMessageChange);
 }
 
 // Execute the function on page load
 onPageLoad();
-
