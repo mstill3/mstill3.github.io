@@ -125,8 +125,8 @@ function splitIntoLines(sentence, maxLineWidth) {
             }
 
             // Split the long word into chunks of maxLineWidth
-            for (let i = 0; i < word.length; i += maxLineWidth) {
-                lines.push(word.slice(i, i + maxLineWidth)); // Add chunk to lines
+            for (let i = 0; i < word.length; i += maxLineWidth-2) {
+                lines.push(word.slice(i, i + maxLineWidth-2)); // Add chunk to lines
             }
         } else {
             // Check if adding this word exceeds the max line width
@@ -201,11 +201,12 @@ function formatCow(selectedCowFileContent) {
 
     // Remove trailing spaces, filter out empty lines and comments
     let formattedCow = selectedCowFileContentLines
-        .map(line => line.replace(/\s+$/, '')) // Trim trailing whitespace
+        .map(line => line.replace(/\s+$/, ''))                    // trim trailing whitespace
         .map(line => line.replace('EOC', ''))
-        .map(line => line.replace('$the_cow = <<;', '')) // remove top
-        .map(line => line.replace('$the_cow = <<"";', '')) // remove top
+        .map(line => line.replace('$the_cow = <<;', ''))          // remove message banner for now
+        .map(line => line.replace('$the_cow = <<"";', ''))        // remove message banner for now
         .map(line => line.replace('$eye = chop($eyes);', ''))
+        .map(line => line.replaceAll('\\@', '@'))
         .map(line => line.replaceAll('\\\\', '\\'))
         .map(line => line.replace('$thoughts', thoughtChar))
         .map(line => line.replace('${thoughts}', thoughtChar))
