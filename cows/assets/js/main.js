@@ -9,10 +9,11 @@ const cowSelectBox = document.getElementById('cow-input');
 // @ts-ignore
 const cowMessageInput = document.getElementById('cow-message');
 
+let inputCowMessage = '';
 let selectedCow = '';
 let selectedCowFileContent = '';
 let selectedCowFormattedContent = '';
-let inputCowMessage = '';
+let selectedCowAttributes = '';
 
 /** @type {HTMLElement} */
 // @ts-ignore
@@ -222,10 +223,23 @@ function formatCow(selectedCowFileContent) {
     return formattedCow.join('\n');
 }
 
+/**
+ * @param {string} selectedCowFileContent
+ * @returns {string}
+ */
+function pullAttributes(selectedCowFileContent) {
+    return selectedCowFileContent.split('\n')
+        .map(line => line.replace(/\s+$/, ''))
+        .filter(line => line.length > 0 && line.startsWith('#'))
+        .map(line => line.replace('# ', ''))
+        .join('\n');
+}
+
 async function redrawCow() {
     terminalInputDivElement.innerText = `echo "${inputCowMessage}" | cowsay -f ${selectedCow}`;
     const cowMessageBanner = generateCowMessageBanner(inputCowMessage);
     terminalOutputDivElement.innerText = cowMessageBanner + '\n' + selectedCowFormattedContent;
+    attributionDivElement.innerText = selectedCowAttributes;
 }
 
 /**
@@ -236,6 +250,7 @@ async function setCow(cowName) {
     selectedCow = cowName;
     selectedCowFileContent = await getCowFileContents(selectedCow);
     selectedCowFormattedContent = formatCow(selectedCowFileContent);
+    selectedCowAttributes = pullAttributes(selectedCowFileContent);
     redrawCow();
 }
 
