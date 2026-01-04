@@ -110,8 +110,6 @@ async function getCowFileContents(cowFileName) {
  * @returns {string}
  */
 function formatCow(selectedCowFileContent) {
-    console.log({ selectedCowFileContent });
-
     // Split the content into lines using the correct newline character
     let selectedCowFileContentLines = selectedCowFileContent.split('\n');
 
