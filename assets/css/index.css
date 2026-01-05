@@ -29,9 +29,10 @@ h1 {
     text-align: center;
 }
 
-#cowsay-head {
+#cowsay-cow {
     color: var(--nord_aurora_green);
     font-weight: bold;
+    font-variant-ligatures: none;
     white-space: pre;
     position: absolute;
     right: 0;
