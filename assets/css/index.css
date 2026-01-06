@@ -12,8 +12,7 @@ body {
     font-family: 'JetBrains Mono', monospace;
     background-color: var(--background-color);
     color: var(--text-color);
-
-    padding-top: 25%;
+    padding-top: 22%;
 }
 
 h1 {
