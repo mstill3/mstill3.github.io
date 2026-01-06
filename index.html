@@ -21,70 +21,62 @@
         <title> Landing Page </title>
     </head>
     <body>
-        <div class="container">
-            <section
-                class="d-flex align-items-center"
-                id="about"
-            >
-                <div class="w-100">
-                    <h1> Matt Stillwell </h1>
+        <div class="container d-flex align-items-center">
+            <div class="w-100">
+                <h1> Matt Stillwell </h1>
 
-                    <div class="text">
-                        <p id="rotate-word"></p>
-                        <p> Developer </p>
-                    </div>
+                <div class="text">
+                    <p id="rotate-word"></p>
+                    <p> Developer </p>
+                </div>
 
-                    <div id="social-icons" class="padded">
-                        <a
-                            title="iOS Apps"
-                            href="ios"
-                            data-toggle="tooltip"
-                            data-placement="bottom"
-                        >
-                            <i class="fab fa-apple"></i>
-                        </a>
-                        <a
-                            title="LinkedIn"
-                            href="https://www.linkedin.com/in/matt-s-926035115"
-                            data-toggle="tooltip"
-                            data-placement="bottom"
-                        >
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a
-                            title="GitHub"
-                            href="https://github.com/mstill3"
-                            data-toggle="tooltip"
-                            data-placement="bottom"
-                        >
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a
-                            title="itch.io"
-                            href="https://oceoh.itch.io"
-                            data-toggle="tooltip"
-                            data-placement="bottom"
-                        >
-                            <i class="fab fa-itch-io"></i>
-                        </a>
-                    </div>
-
+                <div id="social-icons" class="padded">
                     <a
-                        title="cowsay cow playground"
-                        href="https://stillwell.dev/cows"
+                        title="iOS Apps"
+                        href="ios"
                         data-toggle="tooltip"
                         data-placement="bottom"
                     >
-                        <div id="cowsay-cow">^__^
-(oo)\____
-(__)\
-    ||---
-    ||</div>
+                        <i class="fab fa-apple"></i>
+                    </a>
+                    <a
+                        title="LinkedIn"
+                        href="https://www.linkedin.com/in/matt-s-926035115"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                    >
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a
+                        title="GitHub"
+                        href="https://github.com/mstill3"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                    >
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a
+                        title="itch.io"
+                        href="https://oceoh.itch.io"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                    >
+                        <i class="fab fa-itch-io"></i>
                     </a>
                 </div>
-            </section>
+            </div>
+
+            <a
+                title="cowsay cow playground"
+                href="https://stillwell.dev/cows"
+                data-toggle="tooltip"
+                data-placement="bottom"
+            >
+                <div id="cowsay-cow"></div>
+            </a>
         </div>
 
+        <script src="assets/js/cow.js"></script>
         <script src="assets/js/typewriter.js"></script>
     </body>
 </html>
