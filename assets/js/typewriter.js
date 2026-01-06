@@ -15,7 +15,7 @@ const WORDS = ['iOS-App', 'Website', 'Game', 'Back-end', 'Software'];
  */
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-};
+}
 
 /** 
  * Changes the currently shown word
