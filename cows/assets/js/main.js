@@ -9,6 +9,9 @@ const cowSelectBox = document.getElementById('cow-input');
 // @ts-ignore
 const cowMessageInput = document.getElementById('cow-message');
 
+/** @type {string[]} */
+let cowFileNames = [];
+
 let inputCowMessage = '';
 let selectedCow = '';
 let selectedCowFileContent = '';
@@ -289,7 +292,7 @@ async function onPageLoad() {
     cowMessageInput.addEventListener('input', handleCowMessageChange);
 
     // Get cow file names
-    const cowFileNames = await getCowFileNames();
+    cowFileNames = await getCowFileNames();
 
     // Clear any existing options
     cowSelectBox.innerHTML = '';
@@ -301,10 +304,35 @@ async function onPageLoad() {
         option.textContent = cowFileName; // Set the displayed text to the cow name
         cowSelectBox.appendChild(option);
     });
+
+    // auto load the first cow option
     if (cowFileNames.length > 0) {
         setCow(cowFileNames[0]);
     }
 }
 
+/**
+ * On key press logic
+ * @param {KeyboardEvent} event 
+ */
+function handleKeyPress(event) {
+    if (cowFileNames.length > 0) {
+        const currentCowIndex = cowFileNames.indexOf(selectedCow);
+        let newCowIndex = currentCowIndex;
+        if (event.key === 'P') {
+            newCowIndex = (currentCowIndex > 0) ? currentCowIndex - 1 : cowFileNames.length - 1;
+        } else if (event.key === 'N') {
+            newCowIndex = (currentCowIndex < cowFileNames.length - 1) ? currentCowIndex + 1 : 0;
+        }
+        const newCowName = cowFileNames[newCowIndex];
+        setCow(newCowName);
+        if (!cowSelectBox) return;
+        cowSelectBox.value = newCowName;
+    }
+}
+
 // Execute the function on page load
 onPageLoad();
+
+// add key listener
+document.addEventListener('keydown', handleKeyPress);
