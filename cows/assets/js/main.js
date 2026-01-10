@@ -61,6 +61,9 @@ async function fetchFileFromGitHub(owner, repo, path) {
 
         // Check if response is ok
         if (!response.ok) {
+            if (response.status === 403) {
+                alert("Github API rate limit hit. Please wait a few moments before trying again.");
+            }
             throw new Error('Network response was not ok. Status: ' + response.status);
         }
 
