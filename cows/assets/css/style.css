@@ -4,15 +4,52 @@ body {
     font-family: 'JetBrains Mono', monospace;
 }
 
+.flex-container {
+    display: flex;
+}
+
 .bordered-text-box {
+    background-color: #212529;
     border-radius: 5px;
+    font-variant-ligatures: none;
+    letter-spacing: 1px;
+    line-height: 1.05;
+    overflow: auto;
     padding: 20px;
     white-space: pre;
-    line-height: 1.05;
-    letter-spacing: 1px;
-    font-variant-ligatures: none;
-    overflow: auto;
-    background-color: #212529;
+}
+
+#copy-terminal-input-text-btn {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    width: 40px;
+}
+
+.snack {
+    background-color: #333;
+    border: 1px solid #acacac;
+    border-radius: 5px;
+    bottom: 20px;
+    color: #fff;
+    left: 50%;
+    opacity: 0;
+    padding: 5px 10px;
+    position: fixed;
+    transform: translateX(-50%);
+    transition: opacity 0.3s;
+    visibility: hidden;
+    z-index: 1;
+}
+
+#terminal-input {
+    flex: 1;
+    margin-right: 10px;
 }
 
 #terminal-input, #terminal-output {

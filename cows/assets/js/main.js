@@ -29,7 +29,7 @@ const terminalOutputDivElement = document.getElementById('terminal-output');
 const attributionDivElement = document.getElementById('attributions');
 
 /** 
- * Fetches HTML response
+ * Fetches HTML response as JSON
  * @param {string} url Input URL to hit
  * @returns {Promise<{name: string}[]>} URL response
  */
@@ -94,7 +94,7 @@ async function fetchFileFromGitHub(owner, repo, path) {
 
 /** 
  * Fetches the cow file names from GitHub repository
- * @returns {Promise<string[]>} Array of cow file names
+ * @returns {Promise<string[]>} cow file names
  */
 async function getCowFileNames() {
   const cowsGithubApiResp = await simplyFetch('https://api.github.com/repos/mstill3/cowsay-files/contents/cows');
@@ -113,9 +113,10 @@ async function getCowFileContents(cowFileName) {
 }
 
 /**
- * @param {string} sentence
- * @param {number} maxLineWidth
- * @returns {string[]} lines
+ * Splits a given sentence string into an array of line strings to fit a given width and word splitting
+ * @param {string} sentence input sentence to split into lines
+ * @param {number} maxLineWidth max width for each line
+ * @returns {string[]} lines string array of substrings from input sentence
  */
 function splitIntoLines(sentence, maxLineWidth) {
     const words = sentence.split(' ');
@@ -128,19 +129,19 @@ function splitIntoLines(sentence, maxLineWidth) {
             // If there's already content in the current line, push it to lines
             if (currentLine.length > 0) {
                 lines.push(currentLine.trim());
-                currentLine = ''; // Reset current line
+                currentLine = '';
             }
 
             // Split the long word into chunks of maxLineWidth
-            for (let i = 0; i < word.length; i += maxLineWidth-2) {
-                lines.push(word.slice(i, i + maxLineWidth-2)); // Add chunk to lines
+            for (let i = 0; i < word.length; i += maxLineWidth - 2) {
+                lines.push(word.slice(i, i + maxLineWidth - 2));
             }
         } else {
             // Check if adding this word exceeds the max line width
             if (currentLine.length + word.length + 1 > maxLineWidth) {
                 if (currentLine.length > 0) {
-                    lines.push(currentLine.trim()); // Push current line if not empty
-                    currentLine = ''; // Reset current line
+                    lines.push(currentLine.trim());
+                    currentLine = '';
                 }
             }
 
@@ -154,13 +155,13 @@ function splitIntoLines(sentence, maxLineWidth) {
         lines.push(currentLine.trim());
     }
 
-    return lines; // Return the array of lines
+    return lines;
 }
 
 /**
- * 
- * @param {string} message 
- * @returns {string} string
+ * Generates the cowsay message banner
+ * @param {string} message what the cow is to say
+ * @returns {string} formatted message within the ascii banner
  */
 function generateCowMessageBanner(message) {
     const MAX_COW_MESSAGE_LINE_WIDTH = 40;
@@ -193,9 +194,9 @@ function generateCowMessageBanner(message) {
     return messageBannerLines.join('\n');
 }
 
-/**
- * @param {string} selectedCowFileContent
- * @returns {string}
+/** Formats the cow properly for web view
+ * @param {string} selectedCowFileContent input cow file content
+ * @returns {string} just the cow portion, properly formatted for web view
  */
 function formatCow(selectedCowFileContent) {
     // Split the content into lines using the correct newline character
@@ -208,10 +209,10 @@ function formatCow(selectedCowFileContent) {
 
     // Remove trailing spaces, filter out empty lines and comments
     let formattedCow = selectedCowFileContentLines
-        .map(line => line.replace(/\s+$/, ''))                    // trim trailing whitespace
+        .map(line => line.replace(/\s+$/, ''))                      // trim trailing whitespace
         .map(line => line.replace('EOC', ''))
-        .map(line => line.replace('$the_cow = <<;', ''))          // remove message banner for now
-        .map(line => line.replace('$the_cow = <<"";', ''))        // remove message banner for now
+        .map(line => line.replace('$the_cow = <<;', ''))            // remove message banner for now
+        .map(line => line.replace('$the_cow = <<"";', ''))          // remove message banner for now
         .map(line => line.replace('$eye = chop($eyes);', ''))
         .map(line => line.replaceAll('\\@', '@'))
         .map(line => line.replaceAll('\\\\', '\\'))
@@ -223,15 +224,16 @@ function formatCow(selectedCowFileContent) {
         .map(line => line.replaceAll('${eye}', eyeChar))
         .map(line => line.replaceAll('$tounge', toungeChar))
         .map(line => line.replaceAll('${tounge}', toungeChar))
-        .filter(line => line.length > 0 && !line.startsWith('#')); // Remove empty lines and comments
+        .filter(line => line.length > 0 && !line.startsWith('#'));  // Remove empty lines and comments
 
     // Join the valid lines back together
     return formattedCow.join('\n');
 }
 
 /**
- * @param {string} selectedCowFileContent
- * @returns {string}
+ * Extracts the attributions from the input cow file content
+ * @param {string} selectedCowFileContent input cow file content
+ * @returns {string} just the attributions portion
  */
 function pullAttributes(selectedCowFileContent) {
     return selectedCowFileContent.split('\n')
@@ -241,6 +243,7 @@ function pullAttributes(selectedCowFileContent) {
         .join('\n');
 }
 
+/** Clears and renders the cow, attributions, and input terminal text within the webpage */
 async function redrawCow() {
     terminalInputDivElement.innerText = `echo "${inputCowMessage}" | cowsay -f ${selectedCow}`;
     const cowMessageBanner = generateCowMessageBanner(inputCowMessage);
@@ -249,8 +252,8 @@ async function redrawCow() {
 }
 
 /**
- * 
- * @param {string} cowName 
+ * Logic to handle changing a selected cow
+ * @param {string} cowName cow to switch to
  */
 async function setCow(cowName) {
     selectedCow = cowName;
@@ -260,9 +263,7 @@ async function setCow(cowName) {
     redrawCow();
 }
 
-/** 
- * Handles change event for cow select box
- */
+/** Handles change event for cow select box */
 function handleCowSelectChange() {
     if (!cowSelectBox) return;
     const selectedInputCow = cowSelectBox.value;
@@ -270,18 +271,14 @@ function handleCowSelectChange() {
     setCow(selectedInputCow);
 }
 
-/** 
- * Handles change event for cow message input
- */
+/** Handles change event for cow message input */
 function handleCowMessageChange() {
     if (!cowMessageInput) return;
     inputCowMessage = cowMessageInput.value;
     redrawCow();
 }
 
-/** 
- * Executes on page load
- */
+/** Executes on page load */
 async function onPageLoad() { 
     if (!cowSelectBox || !cowMessageInput) return;
 
@@ -303,8 +300,10 @@ async function onPageLoad() {
     // Add each cow file name as an option
     cowFileNames.forEach(cowFileName => {
         const option = document.createElement('option');
-        option.value = cowFileName; // Set the value to the cow name
-        option.textContent = cowFileName; // Set the displayed text to the cow name
+        // Set the value to the cow name
+        option.value = cowFileName;
+        // Set the displayed text to the cow name
+        option.textContent = cowFileName;
         cowSelectBox.appendChild(option);
     });
 
@@ -315,8 +314,9 @@ async function onPageLoad() {
 }
 
 /**
- * On key press logic
- * @param {KeyboardEvent} event 
+ * On key press logic.  
+ * Conditionally switch cow files
+ * @param {KeyboardEvent} event input key event
  */
 function handleKeyPress(event) {
     if (cowFileNames.length > 0) {
