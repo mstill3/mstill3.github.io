@@ -322,8 +322,10 @@ async function onPageLoad() {
     // auto load random cow
     if (cowFileNames.length > 0) {
         const randomCowIndex = getRandomInt(0, cowFileNames.length);
-        console.log(randomCowIndex);
-        setCow(cowFileNames[randomCowIndex]);
+        const randomCowName = cowFileNames[randomCowIndex];
+        setCow(randomCowName);
+        if (!cowSelectBox) return;
+        cowSelectBox.value = randomCowName;
     }
 }
 
@@ -336,10 +338,12 @@ function handleKeyPress(event) {
     if (cowFileNames.length > 0) {
         const currentCowIndex = cowFileNames.indexOf(selectedCow);
         let newCowIndex = currentCowIndex;
-        if (event.key === 'P') {
+        if (event.ctrlKey && event.key === 'p') {
             newCowIndex = (currentCowIndex > 0) ? currentCowIndex - 1 : cowFileNames.length - 1;
-        } else if (event.key === 'N') {
+        } else if (event.ctrlKey && event.key === 'n') {
             newCowIndex = (currentCowIndex < cowFileNames.length - 1) ? currentCowIndex + 1 : 0;
+        } else if (event.ctrlKey && event.key === 'r') {
+            newCowIndex = getRandomInt(0, cowFileNames.length);
         }
         const newCowName = cowFileNames[newCowIndex];
         setCow(newCowName);
