@@ -29,6 +29,18 @@ const terminalOutputDivElement = document.getElementById('terminal-output');
 const attributionDivElement = document.getElementById('attributions');
 
 /** 
+ * Responds with a random integer within a given range (min <= n < max)
+ * @param {number} min - minimum range value (inclusive)
+ * @param {number} max - maximum range value (exclusive)
+ * @returns {number} ranger integer within specified range
+ */
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/** 
  * Fetches HTML response as JSON
  * @param {string} url Input URL to hit
  * @returns {Promise<{name: string}[]>} URL response
@@ -205,7 +217,7 @@ function formatCow(selectedCowFileContent) {
     const thoughtChar = '\\';
     const eyeChar = 'o';
     const eyesStr = 'oo';
-    const toungeChar = '';
+    const tongueChar = '';
 
     // Remove trailing spaces, filter out empty lines and comments
     let formattedCow = selectedCowFileContentLines
@@ -222,8 +234,8 @@ function formatCow(selectedCowFileContent) {
         .map(line => line.replace('${eyes}', eyesStr))
         .map(line => line.replaceAll('$eye', eyeChar))
         .map(line => line.replaceAll('${eye}', eyeChar))
-        .map(line => line.replaceAll('$tounge', toungeChar))
-        .map(line => line.replaceAll('${tounge}', toungeChar))
+        .map(line => line.replaceAll('$tongue', tongueChar))
+        .map(line => line.replaceAll('${tongue}', tongueChar))
         .filter(line => line.length > 0 && !line.startsWith('#'));  // Remove empty lines and comments
 
     // Join the valid lines back together
@@ -307,9 +319,11 @@ async function onPageLoad() {
         cowSelectBox.appendChild(option);
     });
 
-    // auto load the first cow option
+    // auto load random cow
     if (cowFileNames.length > 0) {
-        setCow(cowFileNames[0]);
+        const randomCowIndex = getRandomInt(0, cowFileNames.length);
+        console.log(randomCowIndex);
+        setCow(cowFileNames[randomCowIndex]);
     }
 }
 
