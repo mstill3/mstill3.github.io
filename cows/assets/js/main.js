@@ -27,6 +27,9 @@ const terminalOutputDivElement = document.getElementById('terminal-output');
 /** @type {HTMLElement} */
 // @ts-ignore
 const attributionDivElement = document.getElementById('attributions');
+/** @type {HTMLImageElement} */
+// @ts-ignore
+const cowCountImageElement = document.getElementById('cow-count-img');
 
 /** 
  * Responds with a random integer within a given range (min <= n < max)
@@ -217,7 +220,44 @@ function formatCow(selectedCowFileContent) {
     const thoughtChar = '\\';
     const eyeChar = 'o';
     const eyesStr = 'oo';
-    const tongueChar = '';
+    const tongueChar = ''; // 'U '
+
+    // Remove trailing spaces, filter out empty lines and comments
+    let formattedCow = selectedCowFileContentLines
+        .map(line => line.replace(/\s+$/, ''))                      // trim trailing whitespace
+        .map(line => line.replace('EOC', ''))
+        .map(line => line.replace('$the_cow = <<;', ''))            // remove message banner for now
+        .map(line => line.replace('$the_cow = <<"";', ''))          // remove message banner for now
+        .map(line => line.replace('$eye = chop($eyes);', ''))
+        .map(line => line.replaceAll('\\@', '@'))
+        .map(line => line.replaceAll('\\\\', '\\'))
+        .map(line => line.replace('$thoughts', thoughtChar))
+        .map(line => line.replace('${thoughts}', thoughtChar))
+        .map(line => line.replace('$eyes', eyesStr))
+        .map(line => line.replace('${eyes}', eyesStr))
+        .map(line => line.replaceAll('$eye', eyeChar))
+        .map(line => line.replaceAll('${eye}', eyeChar))
+        .map(line => line.replaceAll('$tongue', tongueChar))
+        .map(line => line.replaceAll('${tongue}', tongueChar))
+        .filter(line => line.length > 0 && !line.startsWith('#'));  // Remove empty lines and comments
+
+    // Join the valid lines back together
+    return formattedCow.join('\n');
+}
+
+/** Formats the motivational-whale cow properly for web view
+ * @param {string} selectedCowFileContent input cow file content
+ * @returns {string} just the cow portion, properly formatted for web view
+ */
+function formatMotivationalWhale(selectedCowFileContent) {
+    // TODO: fix me
+    // Split the content into lines using the correct newline character
+    let selectedCowFileContentLines = selectedCowFileContent.split('\n');
+
+    const thoughtChar = '\\';
+    const eyeChar = 'o';
+    const eyesStr = 'oo';
+    const tongueChar = ''; // 'U '
 
     // Remove trailing spaces, filter out empty lines and comments
     let formattedCow = selectedCowFileContentLines
@@ -270,7 +310,11 @@ async function redrawCow() {
 async function setCow(cowName) {
     selectedCow = cowName;
     selectedCowFileContent = await getCowFileContents(selectedCow);
-    selectedCowFormattedContent = formatCow(selectedCowFileContent);
+    if (selectedCow === 'motivational-whale') {
+        selectedCowFormattedContent = formatMotivationalWhale(selectedCowFileContent);
+    } else {
+        selectedCowFormattedContent = formatCow(selectedCowFileContent);
+    }
     selectedCowAttributes = pullAttributes(selectedCowFileContent);
     redrawCow();
 }
@@ -327,6 +371,10 @@ async function onPageLoad() {
         if (!cowSelectBox) return;
         cowSelectBox.value = randomCowName;
     }
+
+    // Update cow count image
+    if (!cowCountImageElement) return;
+    cowCountImageElement.src = 'https://img.shields.io/badge/cow_count-' + cowFileNames.length + '-blue?style=for-the-badge';
 }
 
 /**

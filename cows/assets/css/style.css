@@ -8,6 +8,11 @@ body {
     display: flex;
 }
 
+#cow-count-img {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
 .bordered-text-box {
     background-color: #212529;
     border-radius: 5px;
