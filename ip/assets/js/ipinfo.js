@@ -43,12 +43,15 @@ function showLocationTable(data) {
         table.className = 'location-table';
 
         const rows = [
-            ['IP Address', data.ip],
-            ['ISP', data.org],
-            ['City', data.city],
-            ['Region', data.region],
-            ['Country', data.country],
-            ['Coordinates', `${data.latitude}, ${data.longitude}`],
+            ['IP Address:', data.ip],
+            ['ISP:', data.org],
+            ['City:', data.city],
+            ['Zipcode:', data.postal],
+            ['Region:', data.region],
+            ['Country:', data.country_code_iso3],
+            ['Timezone:', data.timezone],
+            ['Network:', data.network],
+            ['Version:', data.version],
         ];
 
         rows.forEach(([key, value]) => {
