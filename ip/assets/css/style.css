@@ -1,0 +1,9 @@
+body {
+    background-color: #343a40;
+    color: #ffffffe0;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.flex-container {
+    display: flex;
+}
