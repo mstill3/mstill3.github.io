@@ -9,13 +9,13 @@ body {
 }
 
 .location-table {
-    margin-top: 25px;
+    margin-top: 35px;
     width: 100%;
     max-width: 420px;
     border-collapse: collapse;
-    font-size: 14px;
+    font-size: 15px;
     color: #d4d4d4;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .location-table th,
