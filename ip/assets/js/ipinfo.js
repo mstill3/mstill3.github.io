@@ -74,7 +74,7 @@ function showLocationTable(data) {
 
 async function displayPublicIP() {
     try {
-        const res = await fetch('http://ipapi.co/json');
+        const res = await fetch('https://ipapi.co/json');
         const data = await res.json();
         showLocationTable(data);
     } catch (err) {
