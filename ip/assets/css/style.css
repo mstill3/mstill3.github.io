@@ -7,3 +7,30 @@ body {
 .flex-container {
     display: flex;
 }
+
+.location-table {
+    margin-top: 16px;
+    width: 100%;
+    max-width: 420px;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #d4d4d4;
+    line-height: 1.6;
+}
+
+.location-table th,
+.location-table td {
+    padding: 6px 10px;
+    text-align: left;
+}
+
+.location-table th {
+    font-weight: 600;
+    color: #9cdcfe;
+    width: 140px;
+    white-space: nowrap;
+}
+
+.location-table tr:not(:last-child) {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
