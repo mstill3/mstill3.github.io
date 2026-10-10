@@ -1,7 +1,7 @@
 // @ts-check
 
 /** @type {{ [key: string]: string }} */
-const COWS = {
+const COWS_ASCII = {
     'cow':   '^__^\n(oo)\\____\n(__)\\\n    ||---\n    ||',
     'goose': "      _.-.\n __.-( o  \\\n'--'-'._   \\\n        '.  \\\n          \\\n           \\",
     'pig':   '      ,.\n     (_|,.\n    ,\' /, )____\n __j o``-\'\n(")\n`-j\n   `-._(\n      |_\\  |---\n     /_]\'|_|\n        /_]\''
@@ -10,13 +10,18 @@ const COWS = {
 /** Auto run main method */
 function main() {
     const cowElement = document.getElementById('cowsay-cow');
-    if (!cowElement) return;
+    if (!cowElement) {
+        return;
+    }
+
     const numVisits = Number.parseInt(localStorage.getItem('numVisits') || '0');
     localStorage.setItem('numVisits', `${numVisits + 1}`);
-    const cowNames = Object.keys(COWS);
+
+    const cowNames = Object.keys(COWS_ASCII);
     const numCows = cowNames.length;
-    const cowIndex = numCows > 0 ? numVisits % numCows : 0; 
-    cowElement.textContent = COWS[cowNames[cowIndex]];
+    const cowIndex = numCows > 0 ? numVisits % numCows : 0;
+    const selectCowName = cowNames[cowIndex];
+    cowElement.textContent = COWS_ASCII[selectCowName];
 }
 
 main();

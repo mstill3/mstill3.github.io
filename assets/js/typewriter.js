@@ -9,7 +9,8 @@ const TYPE_LETTER_SPEED =  200;
 const WORDS = ['iOS-App', 'Website', 'Game', 'Back-end', 'Software'];
 
 /** 
- * waits for given number of milliseconds
+ * Waits for given number of milliseconds
+ *
  * @param {number} ms Number of milliseconds to wait
  * @returns {Promise<void>} completion of waited time
  */
@@ -19,13 +20,13 @@ function sleep(ms) {
 
 /** 
  * Changes the currently shown word
+ *
  * @param {string} currentWord word to change into
  * @param {string} currentColor color of word to be shown
  * @param {HTMLElement} spanElement HTML element to display the words on
  * @returns {Promise<void>} completion of word change
  */
 async function changeWord(currentWord, currentColor, spanElement) {
-
     spanElement.style.color = currentColor;
     spanElement.innerText = '';
 
@@ -49,7 +50,7 @@ async function changeWord(currentWord, currentColor, spanElement) {
 
 /**
  * Auto run main method.  
- * Keeps typing and deleting each colored word to the webpage.
+ *
  * @returns {Promise<void>} completion
  */
 async function main() {
