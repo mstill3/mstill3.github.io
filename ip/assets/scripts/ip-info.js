@@ -33,6 +33,7 @@
 
 /**
  * Displays the location HTML table element
+ *
  * @param {IpApiLocation} data 
  */
 function showLocationTable(data) {

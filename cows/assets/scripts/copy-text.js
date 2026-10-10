@@ -1,15 +1,18 @@
 // @ts-check
 
-/** in seconds */
-const SNACK_TIMEOUT = 3;
+const SNACK_TIMEOUT_SEC = 3;
 
 /** Copies the terminal-input text to the user's clipboard */
 function copyTerminalInputText() {
     const inputDiv = document.getElementById("terminal-input");
-    if (!inputDiv) return;
+    if (!inputDiv) {
+        return;
+    }
 
     const textToCopy = inputDiv.innerText;
-    if (!textToCopy) return;
+    if (!textToCopy) {
+        return;
+    }
 
     navigator.clipboard.writeText(textToCopy).then(() => {
         showCopyTerminalInputTextSnack();
@@ -21,12 +24,15 @@ function copyTerminalInputText() {
 /** Displays a snack to the webpage notifying user the terminal-input text was copied */
 function showCopyTerminalInputTextSnack() {
     const snack = document.getElementById("copy-terminal-input-text-snack");
-    if (!snack) return;
+    if (!snack) {
+        return;
+    }
+
     snack.style.visibility = 'visible';
     snack.style.opacity = '1';
 
     setTimeout(() => {
         snack.style.visibility = 'hidden';
         snack.style.opacity = '0';
-    }, SNACK_TIMEOUT * 1000);
+    }, SNACK_TIMEOUT_SEC * 1_000);
 }

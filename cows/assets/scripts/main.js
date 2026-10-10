@@ -2,10 +2,10 @@
 
 // Global variables
 
-/** @type {HTMLSelectElement | null} */
+/** @type {HTMLSelectElement} */
 // @ts-ignore
 const cowSelectBox = document.getElementById('cow-input');
-/** @type {HTMLInputElement | null} */
+/** @type {HTMLInputElement} */
 // @ts-ignore
 const cowMessageInput = document.getElementById('cow-message');
 
@@ -33,9 +33,10 @@ const cowCountImageElement = document.getElementById('cow-count-img');
 
 /** 
  * Responds with a random integer within a given range (min <= n < max)
+ *
  * @param {number} min - minimum range value (inclusive)
  * @param {number} max - maximum range value (exclusive)
- * @returns {number} ranger integer within specified range
+ * @returns {number} integer within specified range
  */
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -45,7 +46,8 @@ function getRandomInt(min, max) {
 
 /** 
  * Fetches HTML response as JSON
- * @param {string} url Input URL to hit
+ *
+ * @param {string} url - input URL to hit
  * @returns {Promise<{name: string}[]>} URL response
  */
 async function simplyFetch(url) {
@@ -63,10 +65,11 @@ async function simplyFetch(url) {
 
 /**
  * Fetches the content of a specific file from a GitHub repository.
- * @param {string} owner Repository owner's username
- * @param {string} repo Repository name
- * @param {string} path Path to the specific file in the repository
- * @returns {Promise<string>} Contents of the file
+ *
+ * @param {string} owner - repository owner's username
+ * @param {string} repo - repository name
+ * @param {string} path - path to the specific file in the repository
+ * @returns {Promise<string>} contents of the file
  */
 async function fetchFileFromGitHub(owner, repo, path) {
     const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
@@ -109,6 +112,7 @@ async function fetchFileFromGitHub(owner, repo, path) {
 
 /** 
  * Fetches the cow file names from GitHub repository
+ *
  * @returns {Promise<string[]>} cow file names
  */
 async function getCowFileNames() {
@@ -118,7 +122,8 @@ async function getCowFileNames() {
 
 /** 
  * Fetches the cow file from GitHub repository by cow name
- * @param {string} cowFileName input cow file to read
+ *
+ * @param {string} cowFileName - input cow file to read
  * @returns {Promise<string>} cow file contents
  */
 async function getCowFileContents(cowFileName) {
@@ -129,8 +134,9 @@ async function getCowFileContents(cowFileName) {
 
 /**
  * Splits a given sentence string into an array of line strings to fit a given width and word splitting
- * @param {string} sentence input sentence to split into lines
- * @param {number} maxLineWidth max width for each line
+ *
+ * @param {string} sentence - input sentence to split into lines
+ * @param {number} maxLineWidth - max width for each line
  * @returns {string[]} lines string array of substrings from input sentence
  */
 function splitIntoLines(sentence, maxLineWidth) {
@@ -175,7 +181,8 @@ function splitIntoLines(sentence, maxLineWidth) {
 
 /**
  * Generates the cowsay message banner
- * @param {string} message what the cow is to say
+ *
+ * @param {string} message - what the cow is to say
  * @returns {string} formatted message within the ascii banner
  */
 function generateCowMessageBanner(message) {
@@ -209,8 +216,10 @@ function generateCowMessageBanner(message) {
     return messageBannerLines.join('\n');
 }
 
-/** Formats the cow properly for web view
- * @param {string} selectedCowFileContent input cow file content
+/**
+ * Formats the cow properly for web view
+ *
+ * @param {string} selectedCowFileContent - input cow file content
  * @returns {string} just the cow portion, properly formatted for web view
  */
 function formatCow(selectedCowFileContent) {
@@ -245,8 +254,10 @@ function formatCow(selectedCowFileContent) {
     return formattedCow.join('\n');
 }
 
-/** Formats the motivational-whale cow properly for web view
- * @param {string} selectedCowFileContent input cow file content
+/**
+ * Formats the motivational-whale cow properly for web view
+ *
+ * @param {string} selectedCowFileContent - input cow file content
  * @returns {string} just the cow portion, properly formatted for web view
  */
 function formatMotivationalWhale(selectedCowFileContent) {
@@ -284,7 +295,8 @@ function formatMotivationalWhale(selectedCowFileContent) {
 
 /**
  * Extracts the attributions from the input cow file content
- * @param {string} selectedCowFileContent input cow file content
+ *
+ * @param {string} selectedCowFileContent - input cow file content
  * @returns {string} just the attributions portion
  */
 function pullAttributes(selectedCowFileContent) {
@@ -305,7 +317,8 @@ async function redrawCow() {
 
 /**
  * Logic to handle changing a selected cow
- * @param {string} cowName cow to switch to
+ *
+ * @param {string} cowName - cow to switch to
  */
 async function setCow(cowName) {
     selectedCow = cowName;
@@ -321,23 +334,18 @@ async function setCow(cowName) {
 
 /** Handles change event for cow select box */
 function handleCowSelectChange() {
-    if (!cowSelectBox) return;
     const selectedInputCow = cowSelectBox.value;
-    if (!selectedInputCow) return;
     setCow(selectedInputCow);
 }
 
 /** Handles change event for cow message input */
 function handleCowMessageChange() {
-    if (!cowMessageInput) return;
     inputCowMessage = cowMessageInput.value;
     redrawCow();
 }
 
 /** Executes on page load */
 async function onPageLoad() { 
-    if (!cowSelectBox || !cowMessageInput) return;
-
     // set default input message
     const defaultMessage = 'hello world';
     inputCowMessage = defaultMessage;
@@ -368,19 +376,18 @@ async function onPageLoad() {
         const randomCowIndex = getRandomInt(0, cowFileNames.length);
         const randomCowName = cowFileNames[randomCowIndex];
         setCow(randomCowName);
-        if (!cowSelectBox) return;
         cowSelectBox.value = randomCowName;
     }
 
     // Update cow count image
-    if (!cowCountImageElement) return;
     cowCountImageElement.src = 'https://img.shields.io/badge/cow_count-' + cowFileNames.length + '-blue?style=for-the-badge';
 }
 
 /**
  * On key press logic.  
  * Conditionally switch cow files
- * @param {KeyboardEvent} event input key event
+ *
+ * @param {KeyboardEvent} event - input key event
  */
 function handleKeyPress(event) {
     if (cowFileNames.length > 0) {
@@ -395,7 +402,6 @@ function handleKeyPress(event) {
         }
         const newCowName = cowFileNames[newCowIndex];
         setCow(newCowName);
-        if (!cowSelectBox) return;
         cowSelectBox.value = newCowName;
     }
 }
